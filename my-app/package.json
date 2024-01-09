@@ -1,12 +1,12 @@
 {
-  "homepage" : "https://AsyiqNuruddinNP.github.io/CSS_GroupAssignment",
+  "homepage": "https://AsyiqNuruddinNP.github.io/CSS_GroupAssignment",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "next dev",
     "build": "react-scripts build",
     "test": "react-script test",
@@ -14,9 +14,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.2"
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "eslint": "^8",
