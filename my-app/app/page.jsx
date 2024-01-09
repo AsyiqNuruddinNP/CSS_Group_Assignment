@@ -1,53 +1,26 @@
-import Image from "next/image";
-import React from "react";
+"use client";
+import Spinner from "react-bootstrap/Spinner";
+import useSWR from "swr";
 
-// TODO complete the Show component
-/*
-function Navbar() {
-  return (
-  <ul class="nav">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Services</a></li>
-    <li><a href="#">Products</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-  );
-}
-*/
+// use vanilla fetch as fetcher
+// deserialize the fetched data as json
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-function Movie({title,year,poster}) {
-  return (
-    <div>
-      <h2>
-        {title} {year}
-      </h2>
-      <Image src={poster} width ={500} height={800}/>
-    </div>
-  );
-}
+export default function App() {
+  const IP_API_URL = "https://freeipapi.com/api/json/";
+  const { data, error, isLoading } = useSWR(IP_API_URL, fetcher);
 
-function Car({name,image}){
-  return (
-    <div>
-      <h2>
-        {name}
-      </h2>
-      <Image src={image} width = {1000} height={800}/>
-    </div>
-  );
-}
+  if (error) {
+    return <h1>failed to load</h1>;
+  }
+  if (isLoading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
 
-export default function App(){
-  return (
-    <section>
-      <h1>My Top 3 Movies</h1>
-      <Movie title="Spirit Away" year={2001} poster="/spirit_away.png" />
-      <Movie title="Fight Club" year={1999} poster="/fight_club.jpg" />
-      <Movie title="The Shining" year={1980} poster="/the_shining.jpg" />
-      <h1>My Favourite Cars</h1>
-      <Car name = "Supra MK4" image="/supra_mk4.jpg"/>
-      <Car name = "Skyline GTR R34" image="/r34.jpg"/>
-    </section>
-  );
+  // render data
+  return <h1>Your IP is {data.ipAddress} {data.cityName} {data.continent} {data.timeZone}</h1>;
 }
