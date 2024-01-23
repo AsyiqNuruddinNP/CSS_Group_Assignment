@@ -1,0 +1,51 @@
+#arrowAnim {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  width: 5vw;
+  height: 5vw;
+  border: 2.5vw solid;
+  border-color: black transparent transparent black;
+  transform: rotate(-45deg);
+}
+
+.arrowSliding {
+  position: absolute;
+  animation: slide 4s linear infinite;
+}
+
+.delay1 {
+  animation-delay: 1s;
+}
+
+.delay2 {
+  animation-delay: 2s;
+}
+
+.delay3 {
+  animation-delay: 3s;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateX(15vw);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(9vw);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-9vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-15vw);
+  }
+}
